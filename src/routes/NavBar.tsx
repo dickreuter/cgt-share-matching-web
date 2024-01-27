@@ -34,7 +34,6 @@ const NavBar = () => {
         <span className="navbar-toggler-icon"></span>
       </button>
       <a className="navbar-brand" href="/">
-        CGT-Share-Matching
       </a>
       <div
         className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}
@@ -45,8 +44,19 @@ const NavBar = () => {
           {/* Apply ml-auto here */}
           <li className="nav-item">
             <Link className="nav-link" to="/">
-              Main
+              Mainpage
             </Link>
+          </li>
+          <li className="nav-item ml-auto">
+            {" "}
+            {/* Right align this nav item */}
+            <a
+              className="nav-link"
+              href="https://github.com/dickreuter/cgt-share-matching-web/issues"
+              onClick={handleNavLinkClick}
+            >
+              Report issues
+            </a>
           </li>
         
         </ul>

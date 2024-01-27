@@ -1,6 +1,6 @@
 
 import { Route, Routes } from "react-router-dom"
-import Main from "../Main"
+import Main from "../views/Main"
 
 
 function Routing() {

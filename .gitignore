@@ -1,0 +1,15 @@
+# dependencies
+/node_modules
+
+# build output
+/build
+/dist
+
+# misc
+/.env
+.DS_Store
+
+.vscode
+.pytest_cache
+*.code-workspace
+.env.development

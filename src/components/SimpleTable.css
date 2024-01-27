@@ -1,0 +1,19 @@
+* Styles.css */
+
+.table-container {
+    border-collapse: collapse;
+    margin: 0 auto; /* Centering table */
+}
+
+.table-container th, .table-container td {
+    text-align: left;
+    padding-left: 9px;
+    padding-right: 0px;
+    border-bottom: 1px solid #ddd; /* Adding light border */
+    font-size: 9px; /* Adjusting font size */
+    white-space: nowrap;
+}
+
+.table-container th {
+    background-color: #f2f2f2; /* Adding light background color to headers */
+}

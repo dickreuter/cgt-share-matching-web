@@ -1,0 +1,30 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+h1 {
+  color: #333;
+}
+p {
+  line-height: 1.6;
+}
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  margin-bottom: 15px;
+}
+.info {
+  background-color: #e7f3fe;
+  border-left: 6px solid #2196f3;
+  margin-bottom: 15px;
+  padding: 20px;
+}
+.info p {
+  margin: 0;
+}
+Ø

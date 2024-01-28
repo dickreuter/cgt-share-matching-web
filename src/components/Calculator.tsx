@@ -43,7 +43,7 @@ function MainPage() {
     }
 
     try {
-      const url = `http${HTTP_PREFIX}://${API_URL}/uploadfile/?taxYear=${encodeURIComponent(selectedTaxYear)}`;
+      const url = `http${HTTP_PREFIX}://${API_URL}/uploadfile/?tax_year=${encodeURIComponent(selectedTaxYear)}`;
       const response = await axios.post(
         url,
         formData,

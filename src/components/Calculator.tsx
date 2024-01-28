@@ -13,9 +13,14 @@ function MainPage() {
   const [data, setData] = useState([]);
   const [totalGains, setTotalGains] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedTaxYear, setSelectedTaxYear] = useState("");
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
+  };
+  // Handle tax year change
+  const handleTaxYearChange = (e) => {
+    setSelectedTaxYear(e.target.value);
   };
 
   const handleSubmit = async (e) => {
@@ -24,6 +29,9 @@ function MainPage() {
 
     const formData = new FormData();
     formData.append("file", file);
+
+    // Optionally include the selected tax year
+    formData.append("taxYear", selectedTaxYear);
 
     try {
       const response = await axios.post(
@@ -95,10 +103,28 @@ function MainPage() {
     dataTreeStartExpanded: false,
   };
 
+  // Generate tax year options
+  const taxYears = [];
+  const currentYear = new Date().getFullYear();
+  for (let year = currentYear; year > currentYear - 7; year--) {
+    taxYears.push(`${year - 1}-${year}`);
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <input type="file" name="file" onChange={handleFileChange} required />
+        <br />
+        <br />
+        {/* Tax Year Dropdown */}
+        <select onChange={handleTaxYearChange} value={selectedTaxYear}>
+          <option value="">Select Tax Year</option>
+          {taxYears.map((year, index) => (
+            <option key={index} value={year}>
+              {year}
+            </option>
+          ))}
+        </select>
         <br />
         <br />
         <input type="submit" value="Upload and Calculate" />

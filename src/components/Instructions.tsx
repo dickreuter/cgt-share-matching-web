@@ -1,5 +1,4 @@
 import '../views/Main.css';
-import templateCsv from '../assets/template.csv';
 
 function Instructions() {
   return (
@@ -29,10 +28,12 @@ function Instructions() {
       <h4>Applied Rules:</h4>
       <p>This calculator applies the following rules:</p>
       <ul>
-        <li><strong>Same-Day Rule:</strong> Matches sales with purchases made on the same day.</li>
-        <li><strong>Bed and Breakfasting Rule:</strong> Matches sales with re-purchases within 30 days after the sale.</li>
-        <li><strong>Section 104 Holding:</strong> For sales not matched by the above rules, uses the average cost of shares in the pool.</li>
+        <li><strong>Same-Day Rule:</strong> Matches sales with purchases made on the same day during the tax year.</li>
+        <li><strong>Bed and Breakfasting Rule:</strong> Matches sales with re-purchases within 30 days after the sale. Backward matching between 30 days after tax year ends to the beginning of the tax year.</li>
+        <li><strong>Section 104 Holding:</strong> For sales not matched by the above rules, uses the average cost of shares in the pool. Uses weighted average costs for positions before the tax year begins.</li>
       </ul>
+
+      Each year needs to be processed separately and any unclosed positions from previous years need to be included in the csv file in order for the Section 104 holdings rule to be applied.
     </div>
   );
 }

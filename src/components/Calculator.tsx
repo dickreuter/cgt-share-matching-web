@@ -25,42 +25,60 @@ function MainPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Check if the file and tax year are selected
+
     if (!file || !selectedTaxYear) {
       alert("Please select both a file and a tax year.");
       return;
     }
-    setIsLoading(true);
 
-    const formData = new FormData();
-    formData.append("file", file);
+    // Read the file
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const text = e.target.result;
 
-    // Optionally include the selected tax year
-    formData.append("taxYear", selectedTaxYear);
+      // Simple CSV parsing (consider using a library for more complex scenarios)
+      const lines = text.split("\n");
+      const headers = lines[0].split(",");
 
-    for (var pair of formData.entries()) {
-      console.log(pair[0], pair[1]);
-    }
+      // Check for required columns
+      if (
+        !headers.includes("Date") ||
+        !headers.includes("Shares") ||
+        !headers.includes("Price") ||
+        !headers.includes("Costs") ||
+        !headers.includes("Ticker")
+      ) {
+        alert("CSV file must contain Date, Shares, and Ticker columns.");
+        return;
+      }
 
-    try {
-      const url = `http${HTTP_PREFIX}://${API_URL}/uploadfile/?tax_year=${encodeURIComponent(selectedTaxYear)}`;
-      const response = await axios.post(
-        url,
-        formData,
-        {
+      // If valid, proceed with form submission
+      setIsLoading(true);
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("taxYear", selectedTaxYear);
+
+      try {
+        const url = `http${HTTP_PREFIX}://${API_URL}/uploadfile/?tax_year=${encodeURIComponent(
+          selectedTaxYear
+        )}`;
+        const response = await axios.post(url, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        }
-      );
+        });
 
-      setData(response.data.results); // Set data for tabulator
-      setTotalGains(response.data.total_profit); // Set total gains
-    } catch (error) {
-      console.error("Error uploading file:", error);
-    } finally {
-      setIsLoading(false);
-    }
+        setData(response.data.results); // Set data for tabulator
+        setTotalGains(response.data.total_profit); // Set total gains
+      } catch (error) {
+        console.error("Error uploading file:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    // Trigger the file read
+    reader.readAsText(file);
   };
 
   // Define columns and options for ReactTabulator as per your data structure

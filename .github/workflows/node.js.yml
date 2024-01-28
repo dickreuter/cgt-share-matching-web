@@ -28,7 +28,7 @@ jobs:
         echo "${{ secrets.DEPLOYMENT_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan dickreuter.com >> ~/.ssh/known_hosts
-        scp -i ~/.ssh/id_rsa -r ./dist/* ec2-user@dickreuter.com:/home/ec2-user/www/cgt-share-matching.com
+        scp -i ~/.ssh/id_rsa -r ./dist/* ec2-user@dickreuter.com:/home/ec2-user/www/cgt-share-matching.co.uk
       env:
         DEPLOY_KEY: ${{ secrets.DEPLOYMENT_KEY }}
     

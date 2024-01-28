@@ -1,4 +1,5 @@
 import '../views/Main.css';
+import templateCsv from '../assets/template.csv';
 
 function Instructions() {
   return (
@@ -19,7 +20,12 @@ function Instructions() {
         2024-01-02,msft,sell,50,12.0,0.0<br/>
         ...
       </pre>
+      {/* Download Link */}
+      <a href="/template.csv" download="template.csv">
+        Download CSV Template
+      </a>
 
+      <br/><br/><br/>
       <h4>Applied Rules:</h4>
       <p>This calculator applies the following rules:</p>
       <ul>

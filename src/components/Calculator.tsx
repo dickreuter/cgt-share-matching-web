@@ -11,6 +11,7 @@ import "../views/Main.css";
 function MainPage() {
   const [file, setFile] = useState(null);
   const [data, setData] = useState([]);
+  const [totalGains, setTotalGains] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleFileChange = (e) => {
@@ -36,6 +37,7 @@ function MainPage() {
       );
 
       setData(response.data.results); // Set data for tabulator
+      setTotalGains(response.data.total_profit); // Set total gains
     } catch (error) {
       console.error("Error uploading file:", error);
     } finally {
@@ -111,15 +113,22 @@ function MainPage() {
             height: "50vh",
           }}
         >
-          <CircularProgress />
+          <>
+            <CircularProgress />
+          </>
         </div>
       ) : data && data.length > 0 ? (
-        <ReactTabulator
-          data={data}
-          columns={columns}
-          options={options}
-          key={Date.now()} // Ensuring re-render with new data
-        />
+        <div>
+          <div className="gains">
+            Total gains: <strong>{totalGains}</strong>
+          </div>
+          <ReactTabulator
+            data={data}
+            columns={columns}
+            options={options}
+            key={Date.now()} // Ensuring re-render with new data
+          />
+        </div>
       ) : (
         <div>No data to display</div>
       )}

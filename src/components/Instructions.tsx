@@ -14,9 +14,9 @@ function Instructions() {
       </ul>
       <p>Example:</p>
       <pre>
-        Date,Ticker,Shares,Price,Costs
-        2024-01-01,msft,buy,100,10.0,1.0
-        2024-01-02,msft,sell,50,12.0,0.0
+        Date,Ticker,Shares,Price,Costs<br/>
+        2024-01-01,msft,buy,100,10.0,1.0<br/>
+        2024-01-02,msft,sell,50,12.0,0.0<br/>
         ...
       </pre>
 

@@ -25,6 +25,11 @@ function MainPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Check if the file and tax year are selected
+    if (!file || !selectedTaxYear) {
+      alert("Please select both a file and a tax year.");
+      return;
+    }
     setIsLoading(true);
 
     const formData = new FormData();
@@ -33,9 +38,14 @@ function MainPage() {
     // Optionally include the selected tax year
     formData.append("taxYear", selectedTaxYear);
 
+    for (var pair of formData.entries()) {
+      console.log(pair[0], pair[1]);
+    }
+
     try {
+      const url = `http${HTTP_PREFIX}://${API_URL}/uploadfile/?taxYear=${encodeURIComponent(selectedTaxYear)}`;
       const response = await axios.post(
-        `http${HTTP_PREFIX}://${API_URL}/uploadfile/`,
+        url,
         formData,
         {
           headers: {

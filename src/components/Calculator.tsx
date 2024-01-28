@@ -89,30 +89,12 @@ function MainPage() {
         )
       : [];
 
-  const outcomeFormatter = (
-    cell: any,
-    formatterParams: any,
-    onRendered: any
-  ) => {
-    const value = cell.getValue();
-
-    // Set the background color based on the value
-    if (value === "WON") {
-      cell.getRow().getElement().style.backgroundColor = "lightgreen";
-    } else if (value === "LOST") {
-      cell.getRow().getElement().style.backgroundColor = "pink"; // Using pink as a light red substitute
-    }
-
-    // Return the cell value so it gets displayed
-    return value;
-  };
 
   const columns = nonEmptyColumns.map((key) => ({
     title: key,
     field: key,
     sorter: "string",
     headerFilter: "input",
-    formatter: key === "betOutcome" ? outcomeFormatter : null,
     formatterParams: {
       target: "_blank",
     },
@@ -121,6 +103,8 @@ function MainPage() {
     },
     cssClass: "custom-cell-style", // Add a custom class to cells in this column
   }));
+
+  
   const options = {
     pagination: "local",
     paginationSize: 30,

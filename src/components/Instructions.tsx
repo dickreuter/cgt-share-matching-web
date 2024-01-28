@@ -30,7 +30,7 @@ function Instructions() {
       <ul>
         <li><strong>Same-Day Rule:</strong> Matches sales with purchases made on the same day during the tax year.</li>
         <li><strong>Bed and Breakfasting Rule:</strong> Matches sales with re-purchases within 30 days after the sale. Backward matching between 30 days after tax year ends to the beginning of the tax year.</li>
-        <li><strong>Section 104 Holding:</strong> For sales not matched by the above rules, uses the average cost of shares in the pool. Uses weighted average costs for positions before the tax year begins.</li>
+        <li><strong>Section 104 Holding:</strong> For sales not matched by the above rules, uses the weighted average cost of shares in the pool.</li>
       </ul>
 
       Each year needs to be processed separately and any unclosed positions from previous years need to be included in the csv file in order for the Section 104 holdings rule to be applied.

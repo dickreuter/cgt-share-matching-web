@@ -8,9 +8,9 @@ function Instructions() {
       <ul>
         <li><strong>Date:</strong> The date of the transaction (format: YYYY-MM-DD).</li>
         <li><strong>Ticker:</strong> Ticker or unique name of the security.</li>
-        <li><strong>Shares:</strong> Number of shares traded. For sales, the number has to be negative.</li>
+        <li><strong>Shares:</strong> Number of shares traded. For sales, the number has to be negative. Also use this column for positions held in the previous tax year, that are not yet closed. Short positions should have negative numbers.</li>
         <li><strong>Price:</strong> Price per share.</li>
-        <li><strong>Costs:</strong> Associated costs (e.g., broker fees).</li>
+        <li><strong>Costs:</strong> Associated costs (e.g., broker fees). Use only positive numbers for the cost.</li>
       </ul>
       <p>Example:</p>
       <pre>
@@ -33,7 +33,7 @@ function Instructions() {
         <li><strong>Section 104 Holding:</strong> For sales not matched by the above rules, uses the weighted average cost of shares in the pool.</li>
       </ul>
 
-      Each year needs to be processed separately and any unclosed positions from previous years need to be included in the csv file in order for the Section 104 holdings rule to be applied.
+      Each year needs to be processed separately and any unclosed positions from previous years need to be included in the csv file in order for the Section 104 holdings rule to be applied. Any open long positions need to have a positive value in the Shares column. Short positions need to have a negative value.
     </div>
   );
 }

@@ -1,6 +1,8 @@
 Capital Gains Tax Calculator
 ============================
 
+Visit www.cgt-share-matching.co.uk
+
 Welcome to the automatic Capital Gains Tax Calculator. This tool helps you calculate the capital gains taxes on your share dealings based on UK tax rules. Simply upload a CSV file with your transaction details, and the calculator will apply the appropriate tax rules to compute your gains or losses.
 
 CSV File Format

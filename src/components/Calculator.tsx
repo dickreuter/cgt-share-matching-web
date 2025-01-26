@@ -36,19 +36,16 @@ function MainPage() {
     reader.onload = async (e) => {
       const text = e.target.result;
 
-      // Simple CSV parsing (consider using a library for more complex scenarios)
-      const lines = text.split("\n");
-      const headers = lines[0].split(",");
+      // Use regex to split lines, handling both \n and \r\n
+      const lines = text.split(/\r?\n/);
+      const headers = lines[0].split(",").map(header => header.replace(/(^"|"$)/g, ''));
 
       // Check for required columns
-      if (
-        !headers.includes("Date") ||
-        !headers.includes("Shares") ||
-        !headers.includes("Price") ||
-        !headers.includes("Costs") ||
-        !headers.includes("Ticker")
-      ) {
-        alert("CSV file must contain Date, Shares, and Ticker columns.");
+      const requiredColumns = ["TradeNumber", "Date", "Ticker", "Shares", "Price", "Costs"];
+      const missingColumns = requiredColumns.filter(col => !headers.includes(col));
+
+      if (missingColumns.length > 0) {
+        alert(`CSV file must contain the following columns: ${requiredColumns.join(", ")}.`);
         return;
       }
 

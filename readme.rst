@@ -10,6 +10,7 @@ CSV File Format
 
 Your CSV file must contain the following columns:
 
+- **TradeNumber:** A unique identifier for each trade.
 - **Date:** The date of the transaction (format: YYYY-MM-DD).
 - **Ticker:** Ticker or unique name of the security.
 - **Shares:** Number of shares traded. For sales, the number has to be negative.
@@ -18,9 +19,9 @@ Your CSV file must contain the following columns:
 
 Example::
 
-    Date,Ticker,Shares,Price,Costs
-    2024-01-01,msft,buy,100,10.0,1.0
-    2024-01-02,msft,sell,50,12.0,0.0
+    TradeNumber,Date,Ticker,Shares,Price,Costs
+    1,2024-01-01,msft,100,10.0,1.0
+    2,2024-01-02,msft,-50,12.0,0.0
     ...
 
 Applied Rules

@@ -6,6 +6,7 @@ function Instructions() {
       <h4>CSV File Format:</h4>
       <p>Your CSV file must contain the following columns:</p>
       <ul>
+        <li><strong>TradeNumber:</strong> A unique identifier for each trade.</li>
         <li><strong>Date:</strong> The date of the transaction (format: YYYY-MM-DD).</li>
         <li><strong>Ticker:</strong> Ticker or unique name of the security.</li>
         <li><strong>Shares:</strong> Number of shares traded. For sales, the number has to be negative. Also use this column for positions held in the previous tax year, that are not yet closed. Short positions should have negative numbers.</li>
@@ -14,9 +15,9 @@ function Instructions() {
       </ul>
       <p>Example:</p>
       <pre>
-        Date,Ticker,Shares,Price,Costs<br/>
-        2024-01-01,msft,buy,100,10.0,1.0<br/>
-        2024-01-02,msft,sell,50,12.0,0.0<br/>
+        TradeNumber,Date,Ticker,Shares,Price,Costs<br/>
+        1,2024-01-01,msft,100,10.0,1.0<br/>
+        2,2024-01-02,msft,-50,12.0,0.0<br/>
         ...
       </pre>
       {/* Download Link */}

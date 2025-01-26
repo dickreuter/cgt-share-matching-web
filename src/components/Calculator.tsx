@@ -14,6 +14,7 @@ function MainPage() {
   const [totalGains, setTotalGains] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedTaxYear, setSelectedTaxYear] = useState("");
+  const [isCorporate, setIsCorporate] = useState(false);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -21,6 +22,10 @@ function MainPage() {
   // Handle tax year change
   const handleTaxYearChange = (e) => {
     setSelectedTaxYear(e.target.value);
+  };
+
+  const handleCorporateChange = (e) => {
+    setIsCorporate(e.target.checked);
   };
 
   const handleSubmit = async (e) => {
@@ -54,6 +59,7 @@ function MainPage() {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("taxYear", selectedTaxYear);
+      formData.append("bedAndBreakfastDays", isCorporate ? 10 : 30);
 
       try {
         const url = `http${HTTP_PREFIX}://${API_URL}/uploadfile/?tax_year=${encodeURIComponent(
@@ -134,6 +140,16 @@ function MainPage() {
             </option>
           ))}
         </select>
+        <br />
+        <br />
+        <label>
+          <input
+            type="checkbox"
+            checked={isCorporate}
+            onChange={handleCorporateChange}
+          />
+           Use corporate method: 10 days for bed and breakfast instead of 30
+        </label>
         <br />
         <br />
         <input type="submit" value="Upload and Calculate" />
